@@ -22,6 +22,21 @@ describe("getFillings", () => {
     };
     expect(getFillings(sandwich2)).toEqual(["smoked salmon", "dill"]);
   });
+
+  test("returns empty list if there are no fillings", () => {
+    const sandwich = {
+      bread: "Sourdough",
+      fillings: [],
+      accompaniment: "crisps"
+    };
+    expect(getFillings(sandwich)).toEqual([]);
+
+    const sandwich2 = {
+      bread: "Rye",
+      accompaniment: "wedges"
+    };
+    expect(getFillings(sandwich2)).toEqual([]);
+  });
 });
 
 describe("isFromManchester", () => {
@@ -71,6 +86,10 @@ describe("getBusNumbers", () => {
   test("returns the correct number of buses for larger numbers of people", () => {
     expect(getBusNumbers(43728)).toBe(1094);
   });
+
+  test("returns 0 for no people", () => {
+    expect(getBusNumbers(0)).toBe(0);
+  });
 });
 
 describe("countSheep", () => {
@@ -102,6 +121,11 @@ describe("countSheep", () => {
       "sheep"
     ];
     expect(countSheep(arr)).toBe(5);
+  });
+
+  test("returns 0 if there are no elements in the array", () => {
+    const arr = [];
+    expect(countSheep(arr)).toBe(0);
   });
 });
 
@@ -140,6 +164,19 @@ describe("hasMPostCode", () => {
         line1: "11 Stone Street",
         city: "Maidstone",
         postCode: "ME20 5BR"
+      }
+    };
+    expect(hasMPostCode(person)).toBe(false);
+  });
+
+  test("returns false if the postcode is empty", () => {
+    const person = {
+      name: "Jahin",
+      age: 55,
+      address: {
+        line1: "11 Stone Street",
+        city: "Maidstone",
+        postCode: ""
       }
     };
     expect(hasMPostCode(person)).toBe(false);
