@@ -21,11 +21,19 @@ describe("capitalize", () => {
   test("does nothing if the string is already capitalized", () => {
     expect(capitalize("Hello")).toBe("Hello");
   });
+
+  test("returns empty string if the string contains no characters", () => {
+    expect(capitalize("")).toBe("");
+  });
 });
 
 describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
+  });
+
+  test("returns a dot if firstname and surname contain no characters", () => {
+    expect(generateInitials("", "")).toBe(".");
   });
 });
 
