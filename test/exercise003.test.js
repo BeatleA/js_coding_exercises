@@ -23,6 +23,10 @@ describe("camelCaseWords", () => {
       "isHigherThanMinNumber"
     );
   });
+
+  test("returns an empty string if empty array passed", () => {
+    expect(camelCaseWords([])).toBe("");
+  });
 });
 
 describe("getSquares", () => {

@@ -1,22 +1,41 @@
+const { capitalize } = require("./exercise001");
+
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  // Your code here!
+  if (nums.length != 0) {
+    return nums.map(num => Math.pow(num, 2));
+  } else {
+    return [];
+  }
 }
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Your code here!
+  let length = words.length;
+  if (length != 0) {
+    let camelCaseWords = words[0];
+    words.slice(1, length).forEach(word => camelCaseWords += capitalize(word));
+    return camelCaseWords;
+  } else {
+    return "";
+  }
 }
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  // Your code here!
+  let subjectsCounter = 0;
+  people.forEach(function (person) {
+    if (person.subjects !== undefined) {
+      subjectsCounter += person.subjects.length;
+    }
+  });
+  return subjectsCounter;
 }
 
 function checkIngredients(menu, ingredient) {
   if (menu === undefined) throw new Error("menu is required");
   if (!ingredient) throw new Error("ingredient is required");
-  // Your code here!
+  return menu.some(dish => dish.ingredients.includes(ingredient));
 }
 
 function duplicateNumbers(arr1, arr2) {
