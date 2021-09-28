@@ -47,17 +47,35 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  let linuxCounter = 0;
+  users.forEach(function(user) {
+    if(user.type === "Linux") linuxCounter++;
+  });
+  return linuxCounter;
 }
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  let length = scores.length;
+  if (length != 0) {
+    let mean = 0;
+    scores.forEach(score => mean += score);  
+    mean /= length;
+    return Math.round(mean * 100) / 100;
+  } else {
+    return -1;
+  }
 }
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // Add your code here!
+  if (n % 3 == 0 && n % 5 == 0) {
+    return "fizzbuzz";
+  } else if (n % 3 == 0) {
+    return "fizz";
+  } else if (n % 5 == 0) {
+    return "buzz";
+  } else return n;
 }
 
 module.exports = {

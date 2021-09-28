@@ -159,6 +159,10 @@ describe("getMeanScore", () => {
   test("returns the mean to 2 decimal places", () => {
     expect(getMeanScore([24, 44, 56, 11, 12, 17, 34])).toBe(28.29);
   });
+
+  test("returns -1 if the array is empty", () => {
+    expect(getMeanScore([])).toBe(-1);
+  });
 });
 
 describe("simpleFizzBuzz", () => {
