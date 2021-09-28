@@ -22,7 +22,7 @@ describe("capitalize", () => {
     expect(capitalize("Hello")).toBe("Hello");
   });
 
-  test("returns empty string if the string contains no characters", () => {
+  test("returns an empty string if the string contains no characters", () => {
     expect(capitalize("")).toBe("");
   });
 });
@@ -40,6 +40,10 @@ describe("generateInitials", () => {
 describe("addVAT", () => {
   test("adds a VAT of 20% to a price of 100", () => {
     expect(addVAT(100, 20)).toBe(120);
+  });
+
+  test("adds a VAT of 20% to a price of 27.89", () => {
+    expect(addVAT(27.89, 20)).toBe(33.47);
   });
 
   test("adds a VAT of 17.5% to a price of 40", () => {
@@ -81,6 +85,10 @@ describe("getMiddleCharacter", () => {
   test("returns the middle 2 characters from a string of even length", () => {
     expect(getMiddleCharacter("help!!")).toBe("lp");
   });
+
+  test("returns an empty string if the string contains no characters", () => {
+    expect(getMiddleCharacter("")).toBe("");
+  });
 });
 
 describe("reverseWord", () => {
@@ -93,6 +101,10 @@ describe("reverseWord", () => {
       "?siht od ot tnaw neve uoy dluow yhw"
     );
   });
+
+  test("returns an empty string if the word contains no characters", () => {
+    expect(reverseWord("")).toBe("");
+  });
 });
 
 describe("reverseAllWords", () => {
@@ -104,6 +116,12 @@ describe("reverseAllWords", () => {
     expect(
       reverseAllWords(["jest", "mocha", "rspec", "jasmine", "selenium"])
     ).toEqual(["tsej", "ahcom", "cepsr", "enimsaj", "muineles"]);
+  });
+
+  test("reverses empty words in an array", () => {
+    expect(
+      reverseAllWords(["", "", ""])
+    ).toEqual(["", "", ""]);
   });
 });
 
