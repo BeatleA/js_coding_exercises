@@ -53,7 +53,6 @@ const getWordFrequencies = str => {
   const wordFrequencies = {};
   for (let word of str.split(' ')) {
     word = word.toLowerCase().replace(/\W/g, "");
-    console.log(word);
     if (wordFrequencies[word] === undefined) {
       wordFrequencies[word] = 1;
     } else {
