@@ -50,6 +50,20 @@ describe("count1sand0s", () => {
       0: 1
     });
   });
+  
+  test("ignores characters other than 1 and 0", () => {
+    expect(count1sand0s("41102003")).toEqual({
+      1: 2,
+      0: 3
+    });
+  });
+
+  test("returns an object with the 0 count of 1s and 0s in an empty string", () => {
+    expect(count1sand0s("")).toEqual({
+      1: 0,
+      0: 0
+    });
+  });
 });
 
 describe("reverseNumber", () => {
@@ -58,6 +72,13 @@ describe("reverseNumber", () => {
     expect(reverseNumber(104)).toBe(401);
     expect(reverseNumber(12345)).toBe(54321);
     expect(reverseNumber(100)).toBe(1); // No leading 0 necessary
+  });
+
+  test("reverses the digits of a negative number", () => {
+    expect(reverseNumber(-5)).toBe(-5);
+    expect(reverseNumber(-104)).toBe(-401);
+    expect(reverseNumber(-12345)).toBe(-54321);
+    expect(reverseNumber(-100)).toBe(-1); // No leading 0 necessary
   });
 });
 
