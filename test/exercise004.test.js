@@ -29,6 +29,10 @@ describe("findNamesBeginningWith", () => {
     expect(findNamesBeginningWith(names, "D")).toEqual(["Dave"]);
     expect(findNamesBeginningWith(names, "F")).toEqual([]);
   });
+
+  test("returns an empty array if no names passed", () => {
+    expect(findNamesBeginningWith([], "S")).toEqual([]);
+  });
 });
 
 describe("findVerbs", () => {
@@ -55,6 +59,20 @@ describe("findVerbs", () => {
       "cheesemonger"
     ];
     expect(findVerbs(words)).toEqual(["to eat", "to sneak", "to squeak"]);
+  });
+
+  test("returns an empty array if no words passed", () => {
+    expect(findVerbs([])).toEqual([]);
+  });
+
+  test("returns an empty array if no verbs passed", () => {
+    const words = [
+      "boat",
+      "tower",
+      "monitor",
+      "cheesemonger"
+    ];
+    expect(findVerbs(words)).toEqual([]);
   });
 });
 
@@ -109,6 +127,11 @@ describe("getCities", () => {
     ];
     expect(getCities(users)).toEqual(["MCR", "LVP", "LVP", "GLW"]);
   });
+
+  test("returns an empty array if no cities passed", () => {
+    expect(getCities([])).toEqual([]);
+  });
+
 });
 
 describe("getSquareRoots", () => {
@@ -151,6 +174,10 @@ describe("findSentencesContaining", () => {
       "Dependencies are specified in a simple object that maps a package name to a version range",
       "It's best to map these additional items such as a test framework, which is not needed for running your project, in a devDependencies object"
     ]);
+  });
+
+  test("returns an empty array if no sentences passed", () => {
+    expect(findSentencesContaining([], "simple")).toEqual([]);
   });
 });
 
