@@ -6,6 +6,15 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  if (!Array.isArray(arr)) throw new Error("an Array is required");
+
+  let total = 0;
+  arr.forEach(n => {
+    if (n % 5 === 0 || n % 3 === 0) {
+      total += n;
+    }
+  });
+  return total;
 };
 
 /**
@@ -48,7 +57,16 @@ const isItPrime = n => {
  */
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
+  if (!Number.isInteger(n)) throw new Error("Integer number n is required");
+  if (n < 0) throw new Error("n >= 0 is required");
   if (fill === undefined) throw new Error("fill is required");
+
+  const matrix = [];
+  const filledArray = new Array(n).fill(fill);
+  for (let i = 0; i < n; i++) {
+    matrix.push(filledArray);
+  }
+  return matrix;
 };
 
 /**
@@ -65,7 +83,12 @@ const createMatrix = (n, fill) => {
  */
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
+  if (!Array.isArray(staff)) throw new Error("(Array, String) is required");
   if (day === undefined) throw new Error("day is required");
+  if (!(typeof day === 'string' || day instanceof String)) throw new Error("(Array, String) is required");
+
+  const scheduledStaff = staff.filter(member => member.rota.includes(day));
+  return scheduledStaff.length >= 3;
 };
 
 module.exports = {
