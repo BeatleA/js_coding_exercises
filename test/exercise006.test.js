@@ -1,5 +1,8 @@
 const {
     sumMultiples,
+    isValidDNA,
+    getComplementaryDNA,
+    isItPrime,
     createMatrix,
     areWeCovered
 } = require("../challenges/exercise006");
@@ -33,6 +36,50 @@ describe("sumMultiples", () => {
 
     test("returns 0 if there are no mutiples of 3 or 5", () => {
         expect(sumMultiples([1, 2, 8, 13, 7])).toBe(0);
+    });
+});
+
+describe("isValidDNA", () => {
+    test("throws an error if not passed a string", () => {
+        expect(() => {
+            isValidDNA();
+        }).toThrow("str is required");
+
+        expect(() => {
+            isValidDNA(1);
+        }).toThrow("String is required");
+
+        expect(() => {
+            isValidDNA(false);
+        }).toThrow("String is required");
+    });
+
+    test("returns false if str is empty", () => {
+        expect(isValidDNA("")).toBe(false);
+    });
+
+    test("returns true if str is a valid DNA string", () => {
+        expect(isValidDNA("AGCCGGATTA")).toBe(true);
+
+        expect(isValidDNA("GATTAAGCCG")).toBe(true);
+    });
+
+    test("returns false if str is not a valid DNA string", () => {
+        expect(isValidDNA("AGCCSGATTA")).toBe(false);
+
+        expect(isValidDNA("GKTTAAGCCG")).toBe(false);
+
+        expect(isValidDNA("ABC")).toBe(false);
+
+        expect(isValidDNA("lrq")).toBe(false);
+
+        expect(isValidDNA("GAT TAAGCCG")).toBe(false);
+    });
+
+    test("is case sensitive", () => {
+        expect(isValidDNA("agccggatta")).toBe(false);
+
+        expect(isValidDNA("gattaagccg")).toBe(false);
     });
 });
 
