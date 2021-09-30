@@ -66,22 +66,89 @@ describe("isValidDNA", () => {
 
     test("returns false if str is not a valid DNA string", () => {
         expect(isValidDNA("AGCCSGATTA")).toBe(false);
-
         expect(isValidDNA("GKTTAAGCCG")).toBe(false);
-
         expect(isValidDNA("ABC")).toBe(false);
-
         expect(isValidDNA("lrq")).toBe(false);
-
         expect(isValidDNA("GAT TAAGCCG")).toBe(false);
     });
 
     test("is case sensitive", () => {
         expect(isValidDNA("agccggatta")).toBe(false);
-
         expect(isValidDNA("gattaagccg")).toBe(false);
     });
 });
+
+describe("getComplementaryDNA", () => {
+    test("throws an error if not passed a string", () => {
+        expect(() => {
+            getComplementaryDNA();
+        }).toThrow("str is required");
+
+        expect(() => {
+            getComplementaryDNA(1);
+        }).toThrow("String is required");
+
+        expect(() => {
+            getComplementaryDNA(false);
+        }).toThrow("String is required");
+    });
+
+    test("throws an error if str is not a valid DNA string", () => {
+        expect(() => {
+            getComplementaryDNA("AGET");
+        }).toThrow("a valid DNA string is required");
+
+        expect(() => {
+            getComplementaryDNA("");
+        }).toThrow("a valid DNA string is required");
+    });
+
+    test("returns a string of the complementary base pairs to a valid DNA string", () => {
+        expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+        expect(getComplementaryDNA("AGCCGGATTA")).toBe("TCGGCCTAAT");
+        expect(getComplementaryDNA("GATTAAGCCG")).toBe("CTAATTCGGC");
+    });
+
+});
+
+describe("isItPrime", () => {
+    test("throws an error if not passed a number", () => {
+        expect(() => {
+            isItPrime();
+        }).toThrow("n is required");
+
+        expect(() => {
+            isItPrime("23");
+        }).toThrow("an Integer is required");
+
+        expect(() => {
+            isItPrime(true);
+        }).toThrow("an Integer is required");
+    });
+
+    test("returns false if number <= 1 passed", () => {
+        expect(isItPrime(-5)).toBe(false);
+        expect(isItPrime(0)).toBe(false);
+        expect(isItPrime(1)).toBe(false);
+    });
+
+    test("returns true if prime number passed", () => {
+        expect(isItPrime(2)).toBe(true);
+        expect(isItPrime(3)).toBe(true);
+        expect(isItPrime(7)).toBe(true);
+        expect(isItPrime(17)).toBe(true);
+        expect(isItPrime(6353)).toBe(true);
+        expect(isItPrime(7919)).toBe(true);
+    });
+
+    test("returns false if composite number passed", () => {
+        expect(isItPrime(9)).toBe(false);
+        expect(isItPrime(6)).toBe(false);
+        expect(isItPrime(18)).toBe(false);
+        expect(isItPrime(6355)).toBe(false);
+        expect(isItPrime(9989)).toBe(false);
+    });
+})
 
 describe("createMatrix", () => {
     test("throws an error if n is not an Integer >= 0", () => {

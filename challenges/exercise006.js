@@ -36,6 +36,22 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!(typeof str === 'string' || str instanceof String)) throw new Error("String is required");
+  if (!isValidDNA(str)) throw new Error("a valid DNA string is required");
+
+  let complementaryDNA = str.split('').map(function (char) {
+    switch (char) {
+      case "T":
+        return "A";
+      case "A":
+        return "T";
+      case "C":
+        return "G";
+      case "G":
+        return "C";
+    }
+  });
+  return complementaryDNA.join('');
 };
 
 /**
@@ -45,6 +61,14 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (!Number.isInteger(n)) throw new Error("an Integer is required");
+
+  if (n <= 3) return n > 1;
+  if (n % 2 === 0) return false;
+  for (let i = 3; i <= Math.sqrt(n); i += 2) {
+    if (n % i === 0) return false;
+  }
+  return true;
 };
 
 /**
