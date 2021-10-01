@@ -1,9 +1,16 @@
+const { sumArrays } = require("./exercise005");
+
 /**
  * This function takes a number, e.g. 123 and returns the sum of all its digits, e.g 6 in this example.
  * @param {Number} n
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  if (!Number.isInteger(n)) throw new Error("an Integer is required");
+
+  let nStr = String(n);
+  if (n < 0) nStr = nStr.substring(1);
+  return sumArrays(Array.from(nStr, Number)) * Math.sign(n);
 };
 
 /**
@@ -16,7 +23,16 @@ const sumDigits = n => {
  */
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
+  if (isNaN(start)) throw new Error("start: a Number is required");
   if (end === undefined) throw new Error("end is required");
+  if (isNaN(end)) throw new Error("end: a Number is required");
+  if (step === undefined) step = 1;
+
+  const range = [];
+  for (let i = start; i <= end; i += step) {
+    range.push(i);
+  }
+  return range;
 };
 
 /**
@@ -50,7 +66,16 @@ const createRange = (start, end, step) => {
  */
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
+  if (!Array.isArray(users)) throw new Error("an Array is required");
   if (date === undefined) throw new Error("date is required");
+
+  const usernames = [];
+  const filteredByDate = users.filter(user => user.screenTime.some(element => element.date === date));
+  filteredByDate.forEach(user => {
+    let usage = user.screenTime.find(element => element.date === date).usage;
+    if (sumArrays(Object.values(usage)) > 100) usernames.push(user.username);
+  });
+  return usernames;
 };
 
 /**
