@@ -177,3 +177,50 @@ describe("getScreentimeAlertList", () => {
         expect(getScreentimeAlertList(users, "2019-05-04")).toEqual([]);
     });
 });
+
+describe("hexToRGB", () => {
+    test("throws an error if hexStr not passed", () => {
+        expect(() => {
+            hexToRGB();
+        }).toThrow("hexStr is required");
+    });
+
+    test("throws an error if hexStr is not a valid hexadecimal color code", () => {
+        expect(() => {
+            hexToRGB("foo");
+        }).toThrow("a hexadecimal color code is required");
+
+        expect(() => {
+            hexToRGB("#GH1133");
+        }).toThrow("a hexadecimal color code is required");
+
+        expect(() => {
+            hexToRGB("FF1133");
+        }).toThrow("a hexadecimal color code is required");
+
+        expect(() => {
+            hexToRGB("##FF1133");
+        }).toThrow("a hexadecimal color code is required");
+
+        expect(() => {
+            hexToRGB("#FFA50");
+        }).toThrow("a hexadecimal color code is required");
+    });
+
+    test("returns the RGB code equivalent of the hex code passed", () => {
+        expect(hexToRGB("#FF1133")).toBe("rgb(255,17,51)");
+        expect(hexToRGB("#FFFFFF")).toBe("rgb(255,255,255)");
+        expect(hexToRGB("#000000")).toBe("rgb(0,0,0)");
+        expect(hexToRGB("#0000FF")).toBe("rgb(0,0,255)");
+        expect(hexToRGB("#800080")).toBe("rgb(128,0,128)");
+        expect(hexToRGB("#FFA500")).toBe("rgb(255,165,0)");
+        expect(hexToRGB("#E9967A")).toBe("rgb(233,150,122)");
+    });
+
+    test("it is not case sensitive", () => {
+        expect(hexToRGB("#ffffff")).toBe("rgb(255,255,255)");
+        expect(hexToRGB("#0000ff")).toBe("rgb(0,0,255)");
+        expect(hexToRGB("#ffa500")).toBe("rgb(255,165,0)");
+        expect(hexToRGB("#cd5c5c")).toBe("rgb(205,92,92)")
+    });
+});
