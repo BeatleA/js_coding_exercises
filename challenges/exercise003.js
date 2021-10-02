@@ -2,7 +2,7 @@ const { capitalize } = require("./exercise001");
 
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  if (nums.length != 0) {
+  if (nums.length !== 0) {
     return nums.map(num => Math.pow(num, 2));
   } else {
     return [];
@@ -11,8 +11,8 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  let length = words.length;
-  if (length != 0) {
+  const length = words.length;
+  if (length !== 0) {
     let camelCaseWords = words[0];
     words.slice(1, length).forEach(word => camelCaseWords += capitalize(word));
     return camelCaseWords;
@@ -41,7 +41,7 @@ function checkIngredients(menu, ingredient) {
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  let uniqueArr = new Set(arr1.filter(number => arr2.includes(number)));
+  const uniqueArr = new Set(arr1.filter(number => arr2.includes(number)));
   return Array.from(uniqueArr).sort();
 }
 

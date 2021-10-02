@@ -1,8 +1,8 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  let index = nums.indexOf(n);
-  if (index != -1 && index != nums.length - 1) {
+  const index = nums.indexOf(n);
+  if (index !== -1 && index !== nums.length - 1) {
     return nums[index + 1];
   } else {
     return null;
@@ -28,7 +28,7 @@ const sumArrays = arrs => {
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  let length = arr.length;
+  const length = arr.length;
   if (length > 1) {
     let temp = arr[0];
     arr[0] = arr[length - 1];
