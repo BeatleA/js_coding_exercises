@@ -84,7 +84,7 @@ const createMatrix = (n, fill) => {
   if (n < 0) throw new Error("n >= 0 is required");
   if (fill === undefined) throw new Error("fill is required");
 
-  return new Array(n).fill(fill).map(() => new Array(n).fill(fill));
+  return new Array(n).fill().map(() => new Array(n).fill(fill));
 };
 
 /**
