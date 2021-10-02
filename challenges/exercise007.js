@@ -29,7 +29,7 @@ const createRange = (start, end, step) => {
   if (step === undefined) step = 1;
 
   const range = [];
-  for (let i = start; i <= end; i += step) {
+  for (let i = start; i <= end; i = ((i * 1000) + (step * 1000)) / 1000) {
     range.push(i);
   }
   return range;

@@ -90,10 +90,8 @@ describe("createRange", () => {
 
     test("works with decimal numbers", () => {
         expect(createRange(3.5, 11.5, 2)).toEqual([3.5, 5.5, 7.5, 9.5, 11.5]);
-        // expect(createRange(0.3, 50.8, 10.1)).toEqual([0.3, 10.4, 20.5, 30.6, 40.7, 50.8]); 
-        // fails due to precision loss here: 40.7 + 10.1 = 50.800000000000004
-        // expect(createRange(-5.4, 10, 4)).toEqual([-5.4, -1.4, 3.4, 7.4]);
-        // fails due to precision loss -1.4000000000000004, 2.5999999999999996
+        expect(createRange(0.3, 50.8, 10.1)).toEqual([0.3, 10.4, 20.5, 30.6, 40.7, 50.8]); 
+        expect(createRange(-5.4, 10, 4)).toEqual([-5.4, -1.4, 2.6, 6.6]);
     });
 });
 
@@ -222,5 +220,55 @@ describe("hexToRGB", () => {
         expect(hexToRGB("#0000ff")).toBe("rgb(0,0,255)");
         expect(hexToRGB("#ffa500")).toBe("rgb(255,165,0)");
         expect(hexToRGB("#cd5c5c")).toBe("rgb(205,92,92)")
+    });
+});
+
+describe("findWinner", () => {
+    test("throws an error if board not passed", () => {
+        expect(() => {
+            findWinner();
+        }).toThrow("board is required");
+    });
+
+    test("returns the right winner", () => {
+        const board = [
+            ["X", "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board)).toBe("X");
+        const board2 = [
+            ["X", "0", null],
+            ["0", "X", "0"],
+            [null, null, "X"]
+        ];
+        expect(findWinner(board2)).toBe("X");
+        const board3 = [
+            [null, "X", "0"],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board3)).toBe("0");
+        const board4 = [
+            ["X", "0", "0"],
+            ["0", "X", "0"],
+            ["X", "X", "0"]
+        ];
+        expect(findWinner(board4)).toBe("0");
+    });
+
+    test("returns null if there is no winner", () => {
+        const board = [
+            [null, "0", null],
+            ["X", null, "0"],
+            ["X", null, "0"]
+        ];
+        expect(findWinner(board)).toBe(null);
+        const board2 = [
+            [null, null, null],
+            [null, null, null],
+            [null, null, null]
+        ];
+        expect(findWinner(board2)).toBe(null);
     });
 });
