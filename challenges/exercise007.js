@@ -107,6 +107,20 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+  if (!Array.isArray(board)) throw new Error("board Array is required");
+  if (board.length === 0) throw new Error("board must not be empty");
+
+  const flatBoard = board.flat();
+
+  const areEqual = (index1, index2, index3) => {
+    return flatBoard[index1] !== null && (flatBoard[index1] === flatBoard[index2] && flatBoard[index1] === flatBoard[index3]);
+  }
+
+  if (areEqual(0, 1, 2) || areEqual(0, 3, 6) || areEqual(0, 4, 8)) return flatBoard[0]; // first row, first column, left diagonal
+  if (areEqual(3, 4, 5) || areEqual(1, 4, 7) || areEqual(2, 4, 6)) return flatBoard[4]; // second row, second column, right diagonal
+  if (areEqual(6, 7, 8) || areEqual(2, 5, 8)) return flatBoard[8];                      // third row, third column
+
+  return null;
 };
 
 module.exports = {

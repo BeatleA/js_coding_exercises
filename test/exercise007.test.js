@@ -230,6 +230,22 @@ describe("findWinner", () => {
         }).toThrow("board is required");
     });
 
+    test("throws an error if board Array not passed", () => {
+        expect(() => {
+            findWinner({});
+        }).toThrow("board Array is required");
+
+        expect(() => {
+            findWinner(34);
+        }).toThrow("board Array is required");
+    });
+
+    test("throws an error if empty board passed", () => {
+        expect(() => {
+            findWinner([]);
+        }).toThrow("board must not be empty");
+    });
+
     test("returns the right winner", () => {
         const board = [
             ["X", "0", null],
@@ -255,6 +271,18 @@ describe("findWinner", () => {
             ["X", "X", "0"]
         ];
         expect(findWinner(board4)).toBe("0");
+        const board5 = [
+            ["X", "0", "X"],
+            ["0", "0", "0"],
+            ["X", "X", "0"]
+        ];
+        expect(findWinner(board5)).toBe("0");
+        const board6 = [
+            ["X", "0", "0"],
+            ["0", "X", "0"],
+            ["0", "X", "X"]
+        ];
+        expect(findWinner(board6)).toBe("X");
     });
 
     test("returns null if there is no winner", () => {
@@ -270,5 +298,20 @@ describe("findWinner", () => {
             [null, null, null]
         ];
         expect(findWinner(board2)).toBe(null);
+    });
+
+    test("returns the right winner if there are 3 nulls in a line as well", () => {
+        const board = [
+            [null, null, null],
+            ["X", "X", "X"],
+            ["0", null, "0"]
+        ];
+        expect(findWinner(board)).toBe("X");
+        const board2 = [
+            [null, "X", "0"],
+            [null, "X", "0"],
+            [null, null, "0"]
+        ];
+        expect(findWinner(board2)).toBe("0");
     });
 });
