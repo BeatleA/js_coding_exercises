@@ -13,8 +13,8 @@ function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   const length = words.length;
   if (length !== 0) {
-    let camelCaseWords = words[0];
-    words.slice(1, length).forEach(word => camelCaseWords += capitalize(word));
+    let camelCaseWords = words[0].toLowerCase();
+    words.slice(1, length).forEach(word => camelCaseWords += capitalize(word.toLowerCase()));
     return camelCaseWords;
   } else {
     return "";
@@ -42,7 +42,7 @@ function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
   const uniqueArr = new Set(arr1.filter(number => arr2.includes(number)));
-  return Array.from(uniqueArr).sort();
+  return [...uniqueArr].sort();
 }
 
 module.exports = {

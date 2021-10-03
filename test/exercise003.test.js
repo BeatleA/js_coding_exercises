@@ -27,6 +27,11 @@ describe("camelCaseWords", () => {
   test("returns an empty string if empty array passed", () => {
     expect(camelCaseWords([])).toBe("");
   });
+
+  test("it should not be case sensitive", () => {
+    expect(camelCaseWords(["My", "variable", "nAmE"])).toBe("myVariableName");
+    expect(camelCaseWords(["my", "VARIABLE", "name"])).toBe("myVariableName");
+  });
 });
 
 describe("getSquares", () => {
