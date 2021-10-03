@@ -70,10 +70,9 @@ const getScreentimeAlertList = (users, date) => {
   if (date === undefined) throw new Error("date is required");
 
   const usernames = [];
-  const filteredByDate = users.filter(user => user.screenTime.some(element => element.date === date));
-  filteredByDate.forEach(user => {
-    let usage = user.screenTime.find(element => element.date === date).usage;
-    if (sumArrays(Object.values(usage)) > 100) usernames.push(user.username);
+  users.forEach(user => {
+    let usage = user.screenTime?.find(element => element.date === date)?.usage;
+    if (usage !== undefined && sumArrays(Object.values(usage)) > 100) usernames.push(user.username);
   });
   return usernames;
 };
