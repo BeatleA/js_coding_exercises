@@ -34,7 +34,7 @@ function getMiddleCharacter(str) {
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  return word.split("").reverse().join("");
+  return [...word].reverse().join("");
 }
 
 function reverseAllWords(words) {
