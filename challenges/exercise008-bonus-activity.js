@@ -9,7 +9,7 @@ function printColours(colours) {
 function shoppingList(list, newItem) {
     if (!list) throw new Error("list is required");
     if (!newItem) throw new Error("newItem is required");
-    
+
     return [...list, ...newItem];
 }
 
@@ -21,7 +21,7 @@ function highestNumber(numbers) {
 
 function splitThatString(string) {
     if (!string) throw new Error("string is required");
-    
+
     return [...string];
 }
 
@@ -30,7 +30,7 @@ function splitThatString(string) {
 
 function addressLookUp(user) {
     if (!user) throw new Error("user is required");
-    
+
     return user.address?.postcode;
 }
 
