@@ -24,7 +24,7 @@ function camelCaseWords(words) {
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
   let subjectsCounter = 0;
-  people.forEach(function (person) {
+  people.forEach(person => {
     if (person.subjects !== undefined) {
       subjectsCounter += person.subjects.length;
     }

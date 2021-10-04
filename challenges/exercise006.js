@@ -35,7 +35,7 @@ const getComplementaryDNA = str => {
   if (!(typeof str === 'string' || str instanceof String)) throw new Error("String is required");
   if (!isValidDNA(str)) throw new Error("a valid DNA string is required");
 
-  const complementaryDNA = [...str].map(function (char) {
+  const complementaryDNA = [...str].map(char => {
     switch (char) {
       case "T":
         return "A";
