@@ -2,11 +2,7 @@ const { capitalize } = require("./exercise001");
 
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
-  if (nums.length !== 0) {
-    return nums.map(num => Math.pow(num, 2));
-  } else {
-    return [];
-  }
+  return nums.map(num => Math.pow(num, 2));
 }
 
 function camelCaseWords(words) {
